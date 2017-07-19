@@ -1,72 +1,42 @@
 package util;
 
-public class Page {
-	
-	private  int pageSize;//页面大小，用户设置好的
-	private int rowCount;//总记录数    从数据库查询
-	private int pageCount;//总页数
-	private int beginRow;//从第几条开始查询
-	private int currentPage;//当前页是第几页, 用户设置
-	
-	private boolean hasprev;//是否有上一页      currentPage==1 false
-	private boolean hasnext;//是否有下一页        currentPage == pageCount false
+import java.util.List;
 
-	public int getPageSize() {
-		return pageSize;
-	}
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
-	}
-	public int getRowCount() {
-		return rowCount;
-	}
-	public void setRowCount(int rowCount) {
-		this.rowCount = rowCount;
-	}
-	public int getPageCount() {//第一处：pageCount=rowCount/pageSize  或者 rowCount/pageSize+1
-		if(rowCount%pageSize==0)
-		   pageCount=rowCount/pageSize;
-		else
-		   pageCount=rowCount/pageSize+1;
-		
-		return pageCount;
-	}
-	public void setPageCount(int pageCount) {
-		this.pageCount = pageCount;
-	}
-	public int getBeginRow() {//第二处:beginRow=(currentPage-1)*pageSize
-		beginRow=(currentPage-1)*pageSize;
-		return beginRow;
-	}
-	public void setBeginRow(int beginRow) {
-		this.beginRow = beginRow;
-	}
+public class Page<T> {
+    private int currentPage = 1; // 当前页, 默认显示第一页
+    private int pageCount = 4;   // 每页显示的行数(查询返回的行数), 默认每页显示4行
+    private int totalCount;      // 总记录数
+    private int totalPage;       // 总页数 = 总记录数 /行数,结果向上取整
+    private List<?> pageData;    // 分页查询到的数据
+    
+    // 返回总页数
+    public int getTotalPage() {
+    	totalPage= (int)Math.ceil(totalCount/(float)pageCount);
+        return totalPage;
+    }
 	public int getCurrentPage() {
-		return currentPage;
-	}
-	public void setCurrentPage(int currentPage) {
-		this.currentPage = currentPage;
-	}
-	public boolean isHasprev() {//第三处 ：currentPage==1  false
-		if(currentPage==1)
-		     hasprev=false;
-		else hasprev=true;
-		
-		return hasprev;
-	}
-	public void setHasprev(boolean hasprev) {
-		this.hasprev = hasprev;
-	}
-	public boolean isHasnext() {//第四处:currentPage ==pageCount  false
-		if(currentPage ==pageCount)
-			hasnext=false;
-		else hasnext=true;
-		
-		return hasnext;
-	}
-	public void setHasnext(boolean hasnext) {
-		this.hasnext = hasnext;
-	}
-	
-
+        return currentPage;
+    }
+    public void setCurrentPage(int currentPage) {
+        this.currentPage = currentPage;
+    }
+    public int getPageCount() {
+        return pageCount;
+    }
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
+    }
+    public int getTotalCount() {
+        return totalCount;
+    }
+    public void setTotalCount(int totalCount) {
+        this.totalCount = totalCount;
+    }
+    
+    public List<?> getPageData() {
+        return pageData;
+    }
+    public void setPageData(List<?> pageData) {
+        this.pageData = pageData;
+    }
 }
