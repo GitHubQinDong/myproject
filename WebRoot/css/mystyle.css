@@ -1,0 +1,19 @@
+label{
+             display: inline-block;/*将行内元素转成行内块状元素  */
+             margin-right: 5px;
+             width: 100px;
+      }
+      input[type="text"],input[type="password"]{
+          padding-left:20px;
+          height:40px;
+          width:200px;
+          margin:5px;
+          border:none;/*去掉输入框默认的边框 */
+          border-bottom: 2px dashed orange
+      }
+      input[type="text"]:focus,input[type="password"]:focus{
+         border-bottom: 2px dashed orange;
+         outline:none; /*去掉输入框默认的轮廓 */
+         box-shadow:-10px -5px 30px rgba(0,0,0,0.4);
+         /*边框阴影 ：x偏移量  y偏移量  模糊值  阴影颜色 */
+      }

@@ -1,0 +1,35 @@
+*{
+	margin:0;
+	padding:0;
+}
+.goods_list{
+	list-style:none;
+	overflow:hidden;
+}
+.goods_list li{
+	float:left;
+	position:relative;
+	margin:10px;
+	border:1px solid #ccc;
+	overflow:hidden;
+}
+.goods_list li span{
+	font-size:20px;
+	color:orange;
+}
+.goods_list li .mask{
+	position:absolute;
+	bottom:-100px;
+	background:rgba(0,0,0,0.5);
+	height:100px;
+	width:100%;
+	transition:all 0.5s ;
+}
+.goods_list li img{
+	width:220px;
+	height:240px;
+}
+.goods_list li:hover .mask{
+	bottom:100px;
+	transform:rotateZ(360deg); 
+}
